@@ -1,21 +1,21 @@
 @import url("https://fonts.googleapis.com/css2?family=Finlandica&display=swap");
 
+$primary-color: rgb(30, 30, 30);
+$secondary-color: rgb(10, 220, 180);
+$tertiary-color: rgb(10, 170, 130);
+
 :root {
     font-family: "Finlandica", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     color: rgb(235, 235, 235);
-
-    --primary-color: rgb(30, 30, 30);
-    --secondary-color: rgb(10, 220, 180);
-    --tertiary-color: rgb(10, 170, 130);
 }
 
 body {
-    background-color: var(--primary-color);
+    background-color: $primary-color;
     background: linear-gradient(
         180deg,
-        var(--primary-color),
-        var(--secondary-color),
-        var(--tertiary-color)
+        $primary-color,
+        $secondary-color,
+        $tertiary-color
     );
     min-height: 100vh;
     margin: 0;
