@@ -1,5 +1,5 @@
 {
-	"name": "fullstack-tut",
+	"name": "sveltekit-todo",
 	"version": "0.0.1",
 	"license": "MIT",
 	"scripts": {
