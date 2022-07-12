@@ -28,6 +28,16 @@
         width: 100%;
         max-width: 42rem;
         margin: 4rem auto 0 auto;
+
+        :global(input) {
+            border: 1px solid transparent;
+        }
+
+        :global(input:focus-visible) {
+            box-shadow: inset 1px 1px 6px rgba(0, 0, 0, 0.1);
+            border: 1px solid transparent !important;
+            outline: none;
+        }
     }
 
     .new {
