@@ -35,7 +35,8 @@
             border: 1px solid transparent;
         }
 
-        :global(input:focus-visible) {
+		:global(input:focus-visible) {
+			transition: all 200ms ease;
             box-shadow: inset 1px 1px 6px rgba(0, 0, 0, 0.1);
             border: 1px solid transparent !important;
             outline: none;
