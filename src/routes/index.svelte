@@ -21,6 +21,8 @@
     </form>
 
     <TodoItem />
+    <TodoItem />
+    <TodoItem />
 </div>
 
 <style lang="scss">
