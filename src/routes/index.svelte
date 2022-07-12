@@ -4,20 +4,43 @@
     const title = "Todos";
 </script>
 
-<style>
-</style>
-
 <svelte:head>
     <title>{title}</title>
 </svelte:head>
 
-<h1>{title}</h1>
+<div class="todos">
+    <h1>{title}</h1>
 
-<form action="" method="">
-    <input
-        type="text"
-        name="text"
-        aria-label="add a todo"
-        placeholder="add a todo"
-    />
-</form>
+    <form action="" method="" class="new">
+        <input
+            type="text"
+            name="text"
+            aria-label="add a todo"
+            placeholder="add a todo"
+        />
+    </form>
+
+    <TodoItem />
+</div>
+
+<style lang="scss">
+    .todos {
+        width: 100%;
+        max-width: 42rem;
+        margin: 4rem auto 0 auto;
+    }
+
+    .new {
+        margin: 0 0 1rem 0;
+
+        input {
+            font-size: 16px;
+            width: 100%;
+            padding: 0.5em 1em 0.5em 1em;
+            box-sizing: border-box;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 6%;
+            text-align: center;
+        }
+    }
+</style>
