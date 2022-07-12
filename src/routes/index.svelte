@@ -38,12 +38,12 @@
             type="text"
             name="text"
             aria-label="add a todo"
-            placeholder="add a todo"
+            placeholder="+ add a todo"
         />
     </form>
 
     {#each todos as todo}
-        <TodoItem />
+        <TodoItem {todo} />
     {/each}
 </div>
 
@@ -71,11 +71,17 @@
         input {
             font-size: 16px;
             width: 80%;
+            color: rgb(235, 235, 235);
             padding: 0.5em 1em 0.5em 1em;
             box-sizing: border-box;
             background: rgba(255, 255, 255, 0.05);
             border-radius: 6%;
             text-align: center;
+        }
+
+        ::placeholder {
+            color: rgb(175, 175, 175);
+            opacity: 1;
         }
     }
 </style>
