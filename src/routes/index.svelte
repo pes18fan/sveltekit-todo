@@ -70,7 +70,7 @@
 
         input {
             font-size: 16px;
-            width: 100%;
+            width: 80%;
             padding: 0.5em 1em 0.5em 1em;
             box-sizing: border-box;
             background: rgba(255, 255, 255, 0.05);
