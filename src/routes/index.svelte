@@ -1,5 +1,5 @@
 <script context="module" lang="ts">
-    import type { Load } from "@sveltejs/kit"
+    import type { Load } from "@sveltejs/kit";
 
     export const load: Load = async ({ fetch }) => {
         const res = await fetch("/todos.json");
@@ -7,15 +7,15 @@
         if (res.ok) {
             const todos = await res.json();
             return {
-                props: { todos }
-            }
+                props: { todos },
+            };
         }
 
         const { message } = await res.json();
         return {
-            error: new Error(message)
-        }
-    }
+            error: new Error(message),
+        };
+    };
 </script>
 
 <script lang="ts">
@@ -57,8 +57,8 @@
             border: 1px solid transparent;
         }
 
-		:global(input:focus-visible) {
-			transition: all 200ms ease;
+        :global(input:focus-visible) {
+            transition: all 200ms ease;
             box-shadow: inset 1px 1px 6px rgba(0, 0, 0, 0.1);
             border: 1px solid transparent !important;
             outline: none;

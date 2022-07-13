@@ -59,12 +59,12 @@
         .annihilate {
             opacity: 0.5;
             background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4.5 5V22H19.5V5H4.5Z' fill='%23676778' stroke='%23676778' stroke-width='1.5' stroke-linejoin='round'/%3E%3Cpath d='M10 10V16.5' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M14 10V16.5' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M2 5H22' stroke='%23676778' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M8 5L9.6445 2H14.3885L16 5H8Z' fill='%23676778' stroke='%23676778' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
-        }
-        
-        .annihilate:hover,
-        .annihilate:focus {
-            transition: opacity 0.2s;
-            opacity: 1;
+
+            &:hover,
+            &:focus {
+                transition: opacity 0.2s;
+                opacity: 1;
+            }
         }
 
         input {
@@ -72,12 +72,12 @@
             flex: 1;
             padding: 0.5em 2em 0.5em 0.8em;
             border-radius: 6%;
-        }
 
-        input:focus + .save,
-        .save:focus {
-            transition: opacity 0.2s;
-            opacity: 1;
+            &:focus + .save,
+            .save:focus {
+                transition: opacity 0.2s;
+                opacity: 1;
+            }
         }
     }
 
