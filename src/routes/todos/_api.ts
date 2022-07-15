@@ -1,11 +1,13 @@
+import type { RequestEvent } from "@sveltejs/kit";
+
 // TODO: persist in db
 let todos: Todo[] = [];
 
-export const api = (request: Request, todo?: Todo) => {
+export const api = (request: RequestEvent, todo?: Todo) => {
     let body: Todo[] = [];
     let status = 500;
 
-    switch (request.method.toUpperCase()) {
+    switch (request.request.method.toUpperCase()) {
         case "GET":
             body = todos;
             status = 200;
