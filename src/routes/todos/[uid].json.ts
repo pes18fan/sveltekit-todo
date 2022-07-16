@@ -9,6 +9,7 @@ export const patch: RequestHandler = async (reqEvent) => {
     const formData = await reqEvent.request.formData();
 
     return api(reqEvent, {
-        text: formData.get("text") as string
+        text: formData.get("text") as string,
+        done: formData.has("done") ? !!formData.get("done") : undefined
     })
 }

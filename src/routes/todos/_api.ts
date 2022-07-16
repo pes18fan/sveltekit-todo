@@ -26,9 +26,12 @@ export const api = (reqEvent: RequestEvent, data?: Record<string, unknown>) => {
         case "PATCH":
             todos = todos.map(todo => {
                 if (todo.uid === reqEvent.params.uid && data !== undefined) {
-                    todo.text = data.text as string;
+                    if (data.text) {
+                        todo.text = data.text as string;
+                    } else {
+                        todo.done = data.done as boolean;
+                    }
                 }
-
                 return todo;
             });
             status = 200;
