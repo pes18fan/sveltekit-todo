@@ -1,10 +1,10 @@
 import type { RequestEvent } from "@sveltejs/kit";
 
 // TODO: persist in db
-let todos: Todo[] = [];
+let todos: Todo[] | Todo = [];
 
 export const api = (reqEvent: RequestEvent, data?: Record<string, unknown>) => {
-    let body: Todo[] = [];
+    let body: Todo[] | Todo = [];
     let status = 500;
 
     switch (reqEvent.request.method.toUpperCase()) {
@@ -35,12 +35,13 @@ export const api = (reqEvent: RequestEvent, data?: Record<string, unknown>) => {
                 return todo;
             });
             status = 200;
+            body = todos.find(todo => todo.uid === reqEvent.params.uid);
             break;
         default:
             break;
     }
 
-    if (reqEvent.request.method.toUpperCase() !== "GET") {
+    if (reqEvent.request.method.toUpperCase() !== "GET" && reqEvent.request.headers.get("accept") !== "application/json") {
         return {
             status: 303,
             headers: {
