@@ -6,3 +6,8 @@ type Todo = {
     text: string;
     done: boolean;
 };
+
+interface Result {
+    result: Function;
+    error: (message?: string) => void;
+}

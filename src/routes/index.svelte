@@ -63,7 +63,10 @@
     <h1>{title}</h1>
 
     <form action="/todos.json" method="post" class="new" use:enhance={{
-        result: processNewTodoResult
+        result: processNewTodoResult,
+        error: (message) => {
+            alert(!!message ? message : "Something went wrong!");
+        }
     }}>
         <input
             type="text"
