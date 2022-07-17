@@ -36,7 +36,7 @@ export const api = async (reqEvent: RequestEvent, data?: Record<string, unknown>
                 },
                 data: {
                     done: data!.done as boolean,
-                    text: !!data!.text === null ? undefined : data!.text as string
+                    text: data!.text as string
                 },
             })
             status = 200;
