@@ -11,26 +11,42 @@
 </script>
 
 <div class="existing-todo" class:done={todo.done}>
-    <form action="/todos/{todo.uid}.json?_method=patch" method="post" use:enhance={{
-        result: processUpdatedTodoResult,
-        error: handleError
-    }}>
-        <input type="hidden" name="done" value="{todo.done ? "" : "true"}" />
-        <button aria-label="mark todo as {todo.done ? "not done" : "done"}" class="toggle" />
+    <form
+        action="/todos/{todo.uid}.json?_method=patch"
+        method="post"
+        use:enhance={{
+            result: processUpdatedTodoResult,
+            error: handleError,
+        }}
+    >
+        <input type="hidden" name="done" value={todo.done ? "" : "true"} />
+        <button
+            aria-label="mark todo as {todo.done ? 'not done' : 'done'}"
+            class="toggle"
+        />
     </form>
 
-    <form action="/todos/{todo.uid}.json?_method=patch" method="post" class="text" use:enhance={{
-        result: processUpdatedTodoResult,
-        error: handleError 
-    }}>
+    <form
+        action="/todos/{todo.uid}.json?_method=patch"
+        method="post"
+        class="text"
+        use:enhance={{
+            result: processUpdatedTodoResult,
+            error: handleError,
+        }}
+    >
         <input type="text" name="text" value={todo.text} />
         <button aria-label="save todo" class="save" />
     </form>
 
-    <form action="/todos/{todo.uid}.json?_method=delete" method="post" use:enhance={{
-        result: processDeletedTodoResult,
-        error: handleError
-    }}>
+    <form
+        action="/todos/{todo.uid}.json?_method=delete"
+        method="post"
+        use:enhance={{
+            result: processDeletedTodoResult,
+            error: handleError,
+        }}
+    >
         <button aria-label="delete todo" class="annihilate" />
     </form>
 </div>

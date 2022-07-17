@@ -11,6 +11,6 @@ export const post: RequestHandler = async (reqEvent) => {
     return api(reqEvent, {
         created_at: new Date(),
         text: formData.get("text") as string,
-        done: false
-    })
+        done: false,
+    });
 };

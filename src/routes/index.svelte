@@ -17,7 +17,6 @@
             error: new Error(message),
         };
     };
-
 </script>
 
 <script lang="ts">
@@ -27,13 +26,16 @@
 
     const title = "Todos";
 
-    async function processNewTodoResult(response: Response, form: HTMLFormElement) {
+    async function processNewTodoResult(
+        response: Response,
+        form: HTMLFormElement
+    ) {
         try {
             let newTodo = await response.json(); // returns all the todos
             todos = [...todos, newTodo];
 
             form.reset();
-        } catch(err) {
+        } catch (err) {
             console.error(`Error adding new todo: ${err}`);
         }
     }
@@ -42,12 +44,12 @@
         try {
             const updatedTodo: Todo = await response.json();
 
-            todos = todos.map(t => {
+            todos = todos.map((t) => {
                 if (t.uid === updatedTodo.uid) {
                     return updatedTodo;
                 } else return t;
-            })
-        } catch(err) {
+            });
+        } catch (err) {
             console.error(`Error updating todo: ${err}`);
         }
     }
@@ -60,12 +62,17 @@
 <div class="todos">
     <h1>{title}</h1>
 
-    <form action="/todos.json" method="post" class="new" use:enhance={{
-        result: processNewTodoResult,
-        error: (message) => {
-            alert(!!message ? message : "Something went wrong!");
-        }
-    }}>
+    <form
+        action="/todos.json"
+        method="post"
+        class="new"
+        use:enhance={{
+            result: processNewTodoResult,
+            error: (message) => {
+                alert(!!message ? message : "Something went wrong!");
+            },
+        }}
+    >
         <input
             type="text"
             name="text"
@@ -75,12 +82,12 @@
     </form>
 
     {#each todos as todo}
-        <TodoItem 
+        <TodoItem
             {todo}
             processDeletedTodoResult={() => {
-                 try {
-                    todos = todos.filter(t => t.uid !== todo.uid);
-                } catch(err) {
+                try {
+                    todos = todos.filter((t) => t.uid !== todo.uid);
+                } catch (err) {
                     console.error(`Error deleting todo: ${err}`);
                 }
             }}
