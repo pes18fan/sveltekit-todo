@@ -1,10 +1,10 @@
 import type { RequestEvent } from "@sveltejs/kit";
 
 // TODO: persist in db
-let todos: Todo[] | Todo = [];
+let todos: Todo[] = [];
 
 export const api = (reqEvent: RequestEvent, data?: Record<string, unknown>) => {
-    let body: Todo[] | Todo = [];
+    let body: any = [];
     let status = 500;
 
     switch (reqEvent.request.method.toUpperCase()) {

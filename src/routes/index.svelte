@@ -28,20 +28,30 @@
     const title = "Todos";
 
     async function processNewTodoResult(response: Response, form: HTMLFormElement) {
-        let newTodo = await response.json(); // returns all the todos
-        newTodo = newTodo[newTodo.length - 1]; // take the most recently added i.e. last todo
-        todos = [...todos, newTodo];
+        try {
+            let newTodo = await response.json(); // returns all the todos
 
-        form.reset();
+            newTodo = newTodo[newTodo.length - 1]; // take the most recently added i.e. last todo
+            todos = [...todos, newTodo];
+
+            form.reset();
+        } catch(err) {
+            console.error(`Error adding new todo: ${err}`);
+        }
     }
 
     async function processUpdatedTodoResult(response: Response) {
-        const updatedTodo = await response.json();
-        todos = todos.map(t => {
-            if (t.uid === updatedTodo.uid) {
-                return updatedTodo;
-            }
-        })
+        try {
+            const updatedTodo: Todo = await response.json();
+
+            todos = todos.map(t => {
+                if (t.uid === updatedTodo.uid) {
+                    return updatedTodo;
+                } else return t;
+            })
+        } catch(err) {
+            console.error(`Error updating todo: ${err}`);
+        }
     }
 </script>
 
@@ -67,7 +77,11 @@
         <TodoItem 
             {todo}
             processDeletedTodoResult={() => {
-                todos = todos.filter(t => t.uid !== todo.uid);
+                 try {
+                    todos = todos.filter(t => t.uid !== todo.uid);
+                } catch(err) {
+                    console.error(`Error deleting todo: ${err}`);
+                }
             }}
             {processUpdatedTodoResult}
         />
