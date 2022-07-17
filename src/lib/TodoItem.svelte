@@ -11,7 +11,7 @@
 </script>
 
 <div class="existing-todo" class:done={todo.done}>
-    <form action="/todos/{todo.uid}.json?_method=patch" name="done" method="post" use:enhance={{
+    <form action="/todos/{todo.uid}.json?_method=patch" method="post" use:enhance={{
         result: processUpdatedTodoResult,
         error: handleError
     }}>

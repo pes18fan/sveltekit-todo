@@ -1,41 +1,45 @@
 import type { RequestEvent } from "@sveltejs/kit";
+import PrismaClient from "$lib/prisma";
 
-// TODO: persist in db
-let todos: Todo[] = [];
+const prisma = new PrismaClient();
 
-export const api = (reqEvent: RequestEvent, data?: Record<string, unknown>) => {
-    let body: any = [];
+export const api = async (reqEvent: RequestEvent, data?: Record<string, unknown>) => {
+    let body: Todo | Todo[] = [];
     let status = 500;
 
     switch (reqEvent.request.method.toUpperCase()) {
         case "GET":
-            body = todos;
+            body = await prisma.todo.findMany();
             status = 200;
             break;
         case "POST":
-            if (data !== undefined) {
-                todos.push(data as Todo);
-                body = todos;
-                status = 201;
-            }
+            body = await prisma.todo.create({
+                data: {
+                    created_at: data!.created_at as Date,
+                    done: data!.done as boolean,                       text: data!.text as string
+                }
+            });
+            status = 201;
             break;
         case "DELETE":
-            todos = todos.filter(todo => todo.uid !== reqEvent.params.uid);
+            body = await prisma.todo.delete({
+                where: {
+                    uid: reqEvent.params.uid
+                }
+            })
             status = 200;
             break;
         case "PATCH":
-            todos = todos.map(todo => {
-                if (todo.uid === reqEvent.params.uid && data !== undefined) {
-                    if (data.text) {
-                        todo.text = data.text as string;
-                    } else {
-                        todo.done = data.done as boolean;
-                    }
-                }
-                return todo;
-            });
+            body = await prisma.todo.update({
+                where: {
+                    uid: reqEvent.params.uid
+                },
+                data: {
+                    done: data!.done as boolean,
+                    text: !!data!.text === null ? undefined : data!.text as string
+                },
+            })
             status = 200;
-            body = todos.find(todo => todo.uid === reqEvent.params.uid);
             break;
         default:
             break;

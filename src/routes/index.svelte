@@ -30,8 +30,6 @@
     async function processNewTodoResult(response: Response, form: HTMLFormElement) {
         try {
             let newTodo = await response.json(); // returns all the todos
-
-            newTodo = newTodo[newTodo.length - 1]; // take the most recently added i.e. last todo
             todos = [...todos, newTodo];
 
             form.reset();
